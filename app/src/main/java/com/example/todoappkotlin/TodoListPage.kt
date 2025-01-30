@@ -23,46 +23,12 @@ fun TodoListPage(
     viewModel: TodoViewModel = hiltViewModel()
 ) {
     val todos by viewModel.todoList.collectAsStateWithLifecycle()
-    var inputText by remember { mutableStateOf("") }
-    val focusManager = LocalFocusManager.current
 
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp),
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            OutlinedTextField(
-                value = inputText,
-                onValueChange = { inputText = it },
-                singleLine = true,
-                label = { Text(text = "Enter Task") },
-                modifier = Modifier.weight(1f)
-            )
-
-            Spacer(modifier = Modifier.size(10.dp))
-
-            Button(
-                onClick = {
-                    if (inputText.isNotEmpty()) {
-                        viewModel.addTodo(
-                            title = inputText,
-                            desc = "$inputText desc"
-                        )
-                        inputText = ""
-                    }
-                    focusManager.clearFocus()
-                },
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp),
-                modifier = Modifier.size(width = 80.dp, height = 56.dp)
-            ) {
-                Text(text = "Add")
-            }
-        }
-        Spacer(modifier = Modifier.size(30.dp))
 
         if (todos.isEmpty()) {
             Box(
