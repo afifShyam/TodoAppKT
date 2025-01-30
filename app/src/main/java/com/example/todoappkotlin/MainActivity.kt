@@ -14,7 +14,7 @@ import com.example.todoappkotlin.viewModel.TodoViewModel
 import com.example.todoappkotlin.ui.theme.ToDoAppKotlinTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint // ✅ Required for Hilt to inject ViewModel
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

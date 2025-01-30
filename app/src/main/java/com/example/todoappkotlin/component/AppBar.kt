@@ -12,7 +12,7 @@ import com.example.todoappkotlin.viewModel.TodoViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TodoAppBar() {
-    // ✅ Automatically inject ViewModel using Hilt
+
     val viewModel: TodoViewModel = hiltViewModel()
 
     CenterAlignedTopAppBar(
@@ -25,7 +25,7 @@ fun TodoAppBar() {
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Red,
+            containerColor = Color(0xFF4CAF50),
             titleContentColor = MaterialTheme.colorScheme.onPrimary
         ),
         actions = {

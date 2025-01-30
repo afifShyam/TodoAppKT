@@ -20,7 +20,7 @@ abstract class TodoDatabase : RoomDatabase() {
         fun getDatabase(context: Context): TodoDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext, // ✅ Use applicationContext here
+                    context.applicationContext,
                     TodoDatabase::class.java,
                     "todo_database"
                 ).fallbackToDestructiveMigration()
