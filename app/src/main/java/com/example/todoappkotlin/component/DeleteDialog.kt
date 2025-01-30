@@ -15,7 +15,7 @@ fun DeleteConfirmationDialog(
         AlertDialog(
             onDismissRequest = onDismiss,
             title = { Text(text = "Delete Task") },
-            text = { Text("Are you sure you want to delete this task? This action cannot be undone.") },
+            text = { Text("Are you sure you want to delete all task? This action cannot be undone.") },
             confirmButton = {
                 TextButton(onClick = {
                     onConfirm()

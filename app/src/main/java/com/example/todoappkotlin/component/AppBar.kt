@@ -7,12 +7,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.todoappkotlin.viewModel.TodoViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TodoAppBar() {
     val viewModel: TodoViewModel = hiltViewModel()
+    val todoList = viewModel.todoList.collectAsStateWithLifecycle().value
     var showDialog by remember { mutableStateOf(false) } // ✅ State for dialog visibility
 
     CenterAlignedTopAppBar(
@@ -29,10 +31,10 @@ fun TodoAppBar() {
             titleContentColor = MaterialTheme.colorScheme.onPrimary
         ),
         actions = {
-            TextButton(onClick = {
-                showDialog = viewModel.todoList.value.isNotEmpty()
-                 }) {
-                Text(text = "Clear All", color = MaterialTheme.colorScheme.onPrimary)
+            if (todoList.isNotEmpty()) {
+                TextButton(onClick = { showDialog = true }) {
+                    Text(text = "Clear All", color = MaterialTheme.colorScheme.onPrimary)
+                }
             }
         }
     )
