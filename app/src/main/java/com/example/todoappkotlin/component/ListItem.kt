@@ -21,19 +21,28 @@ import java.text.SimpleDateFormat
 
 @Composable
 fun TodoListItem(item: TodoModel, onDelete: () -> Unit, onToggleComplete: () -> Unit) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(40.dp
-        ),
-        verticalAlignment = Alignment.CenterVertically,
+    val modifier = Modifier
+        .fillMaxWidth()
+        .padding(5.dp)
+        .clip(androidx.compose.foundation.shape.RoundedCornerShape(16.dp))
+        .then(
+            if (item.isDone) {
+                Modifier.background(Color(0xFF4CAF50))
+            } else if (item.isGradient) {
+                Modifier.background(getGradientBrush(
+                    startColor = item.gradientStart,
+                    endColor = item.gradientEnd
+                ))
+            } else {
+                Modifier.background(item.color.toComposeColor())
+            }
+        )
+        .padding(16.dp)
 
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(5.dp)
-            .clip(androidx.compose.foundation.shape.RoundedCornerShape(16.dp))
-            .background(
-                color = if (item.isDone) Color(0xFF4CAF50) else Color(0xFFF44336) // Green for done, Red for pending
-            )
-            .padding(16.dp),
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(40.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
     ) {
         val createdNow = SimpleDateFormat("hh:mm a").format(item.createdAt)
 
