@@ -17,6 +17,10 @@ A modern **To-Do App** built using **Jetpack Compose**, **Room Database**, **Sta
 <img width="268" alt="Screenshot 2025-01-30 at 6 38 21 PM" src="https://github.com/user-attachments/assets/921a8add-bb41-4a65-821e-5941d7f57fd7" />
 
 ---
+🔥 What's New?
+
+✅ Each task gets a unique color or gradient
+✅ Dynamic UI updates based on isGradient flag
 
 ## 🎯 Features
 ✅ **Jetpack Compose UI** (Material 3)  
