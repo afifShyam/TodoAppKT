@@ -24,4 +24,17 @@ A modern to-do app built with Jetpack Compose, Material 3, Room, StateFlow, and 
 3. Run the `app` configuration on an emulator or device.
 
 ## Screenshots
-UI was refreshed. Add new screenshots here after running the updated build.
+<p>
+  <img src="app/src/main/java/com/example/todoappkotlin/screenshots/Screenshot_20260117_224730.png" width="240" />
+  <img src="app/src/main/java/com/example/todoappkotlin/screenshots/Screenshot_20260117_224957.png" width="240" />
+  <img src="app/src/main/java/com/example/todoappkotlin/screenshots/Screenshot_20260117_225007.png" width="240" />
+</p>
+<p>
+  <img src="app/src/main/java/com/example/todoappkotlin/screenshots/Screenshot_20260117_225030.png" width="240" />
+  <img src="app/src/main/java/com/example/todoappkotlin/screenshots/Screenshot_20260117_225041.png" width="240" />
+  <img src="app/src/main/java/com/example/todoappkotlin/screenshots/Screenshot_20260117_225054.png" width="240" />
+</p>
+<p>
+  <img src="app/src/main/java/com/example/todoappkotlin/screenshots/Screenshot_20260117_225101.png" width="240" />
+  <img src="app/src/main/java/com/example/todoappkotlin/screenshots/Screenshot_20260117_225132.png" width="240" />
+</p>
