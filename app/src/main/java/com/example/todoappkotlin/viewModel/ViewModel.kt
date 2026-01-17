@@ -37,6 +37,12 @@ class TodoViewModel @Inject constructor(
         }
     }
 
+    fun updateTodo(todo: TodoModel, title: String, desc: String) {
+        viewModelScope.launch {
+            repository.updateTodo(todo, title, desc)
+        }
+    }
+
     fun clearAllTodos() {
         viewModelScope.launch {
             repository.clearAllTodos()

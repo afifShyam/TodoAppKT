@@ -14,11 +14,18 @@ class TodoRepository @Inject constructor(
     val todoList: Flow<List<TodoModel>> = todoDao.getAllTodos()
 
     suspend fun addTodo(title: String, desc: String) {
+        val cleanTitle = title.trim()
+        val cleanDesc = desc.trim()
+        if (cleanTitle.isBlank() || cleanDesc.isBlank()) {
+            return
+        }
+        val now = Date()
         val todo = TodoModel(
-            title = title,
-            description = desc,
+            title = cleanTitle,
+            description = cleanDesc,
             isDone = false,
-            createdAt = Date()
+            createdAt = now,
+            updatedAt = now
         )
         todoDao.insertTodo(todo)
     }
@@ -28,7 +35,27 @@ class TodoRepository @Inject constructor(
     }
 
     suspend fun toggleComplete(todo: TodoModel) {
-        todoDao.updateTodo(todo.copy(isDone = !todo.isDone))
+        todoDao.updateTodo(
+            todo.copy(
+                isDone = !todo.isDone,
+                updatedAt = Date()
+            )
+        )
+    }
+
+    suspend fun updateTodo(todo: TodoModel, title: String, desc: String) {
+        val cleanTitle = title.trim()
+        val cleanDesc = desc.trim()
+        if (cleanTitle.isBlank() || cleanDesc.isBlank()) {
+            return
+        }
+        todoDao.updateTodo(
+            todo.copy(
+                title = cleanTitle,
+                description = cleanDesc,
+                updatedAt = Date()
+            )
+        )
     }
 
     suspend fun clearAllTodos() {
