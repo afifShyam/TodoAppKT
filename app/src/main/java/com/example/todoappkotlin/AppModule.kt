@@ -20,7 +20,7 @@ object AppModule {
             context,
             TodoDatabase::class.java,
             "todo_database"
-        ).fallbackToDestructiveMigration() // This prevents crashes on version changes
+        ).fallbackToDestructiveMigration(dropAllTables = false)
             .build()
     }
 

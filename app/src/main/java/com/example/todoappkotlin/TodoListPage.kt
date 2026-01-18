@@ -1,6 +1,7 @@
 package com.example.todoappkotlin
 
 import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -50,6 +51,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.todoappkotlin.component.TodoListItem
 import com.example.todoappkotlin.model.TodoModel
+import com.example.todoappkotlin.util.ListState
+import com.example.todoappkotlin.util.TodoFilter
 
 @Composable
 fun TodoListPage(
@@ -96,15 +99,14 @@ fun TodoListPage(
     }
 
     val clearFocusModifier = Modifier.pointerInput(searchBounds) {
-        awaitPointerEventScope {
-            while (true) {
-                val down = awaitFirstDown(requireUnconsumed = false)
-                val bounds = searchBounds
-                if (bounds != null && !bounds.contains(down.position)) {
-                    focusManager.clearFocus()
-                }
-            }
+        awaitEachGesture{
+                    val down = awaitFirstDown(requireUnconsumed = false)
+                    val bounds = searchBounds
+                    if (bounds != null && !bounds.contains(down.position)) {
+                        focusManager.clearFocus()
+                    }
         }
+
     }
 
     Column(
@@ -142,7 +144,7 @@ fun TodoListPage(
                 modifier = Modifier.horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                TodoFilter.values().forEach { option ->
+                TodoFilter.entries.forEach { option ->
                     val label = when (option) {
                         TodoFilter.All -> "All (${todos.size})"
                         TodoFilter.Active -> "Active ($activeCount)"
@@ -286,16 +288,4 @@ private fun FilteredEmptyState(
             }
         }
     }
-}
-
-private enum class ListState {
-    Empty,
-    NoMatches,
-    List
-}
-
-private enum class TodoFilter {
-    All,
-    Active,
-    Done
 }
